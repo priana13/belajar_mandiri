@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-protected $guarded = [];
 
 class Progres extends Model
 {
+    protected $guarded = [];
+    
     use HasFactory;   
 
 }

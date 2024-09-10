@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\LinkCategoryResource\Pages;
-use App\Filament\Resources\LinkCategoryResource\RelationManagers;
-use App\Models\LinkCategory;
+use App\Filament\Resources\PlayListResource\Pages;
+use App\Filament\Resources\PlayListResource\RelationManagers;
+use App\Models\PlayList;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class LinkCategoryResource extends Resource
+class PlayListResource extends Resource
 {
-    protected static ?string $model = LinkCategory::class;
+    protected static ?string $model = PlayList::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -23,9 +23,14 @@ class LinkCategoryResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('category_name')
+                Forms\Components\TextInput::make('name')
                     ->required(),
-                Forms\Components\TextInput::make('detail'),
+                Forms\Components\Textarea::make('details')
+                    ->required()
+                    ->columnSpanFull(),
+                // Forms\Components\TextInput::make('user_id')
+                //     ->required()
+                //     ->numeric(),
             ]);
     }
 
@@ -33,10 +38,11 @@ class LinkCategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('category_name')
+                Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('detail')
-                    ->searchable(),
+                // Tables\Columns\TextColumn::make('user_id')
+                //     ->numeric()
+                //     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -69,9 +75,9 @@ class LinkCategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListLinkCategories::route('/'),
-            // 'create' => Pages\CreateLinkCategory::route('/create'),
-            // 'edit' => Pages\EditLinkCategory::route('/{record}/edit'),
+            'index' => Pages\ListPlayLists::route('/'),
+            'create' => Pages\CreatePlayList::route('/create'),
+            'edit' => Pages\EditPlayList::route('/{record}/edit'),
         ];
     }
 }

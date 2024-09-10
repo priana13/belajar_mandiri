@@ -20,4 +20,11 @@ class Link extends Model
 
        return $this->belongsTo(LinkCategory::class, 'link_category_id');
     }
+
+    
+    public function play_list(){
+
+        return $this->belongsTo(PlayList::class, 'play_list_id');
+     }
+
 }

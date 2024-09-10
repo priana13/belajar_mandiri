@@ -27,12 +27,8 @@ class LinkResource extends Resource
                     ->required(),
                 Forms\Components\Textarea::make('detail')
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('link_category_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('user_id')
-                    ->required()
-                    ->numeric(),
+                Forms\Components\Select::make('link_category_id')->relationship('category', 'category_name')
+                    ->required(),              
                 Forms\Components\Toggle::make('is_done')
                     ->required(),
             ]);
@@ -87,8 +83,8 @@ class LinkResource extends Resource
     {
         return [
             'index' => Pages\ListLinks::route('/'),
-            'create' => Pages\CreateLink::route('/create'),
-            'edit' => Pages\EditLink::route('/{record}/edit'),
+            // 'create' => Pages\CreateLink::route('/create'),
+            // 'edit' => Pages\EditLink::route('/{record}/edit'),
         ];
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\LinkCategoryResource\Pages;
-use App\Filament\Resources\LinkCategoryResource\RelationManagers;
-use App\Models\LinkCategory;
+use App\Filament\Resources\ProgresResource\Pages;
+use App\Filament\Resources\ProgresResource\RelationManagers;
+use App\Models\Progres;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class LinkCategoryResource extends Resource
+class ProgresResource extends Resource
 {
-    protected static ?string $model = LinkCategory::class;
+    protected static ?string $model = Progres::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -23,9 +23,8 @@ class LinkCategoryResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('category_name')
+                Forms\Components\TextInput::make('progres_name')
                     ->required(),
-                Forms\Components\TextInput::make('detail'),
             ]);
     }
 
@@ -33,9 +32,7 @@ class LinkCategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('category_name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('detail')
+                Tables\Columns\TextColumn::make('progres_name')->label("Progres Name")
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -69,9 +66,9 @@ class LinkCategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListLinkCategories::route('/'),
-            // 'create' => Pages\CreateLinkCategory::route('/create'),
-            // 'edit' => Pages\EditLinkCategory::route('/{record}/edit'),
+            'index' => Pages\ListProgres::route('/'),
+            // 'create' => Pages\CreateProgres::route('/create'),
+            // 'edit' => Pages\EditProgres::route('/{record}/edit'),
         ];
     }
 }
