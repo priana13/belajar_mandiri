@@ -9,13 +9,15 @@ class Link extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function user(){
 
-        $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function category(){
 
-        $this->belongsTo(Category::class, 'link_category_id');
+       return $this->belongsTo(LinkCategory::class, 'link_category_id');
     }
 }

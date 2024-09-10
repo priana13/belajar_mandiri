@@ -9,6 +9,8 @@ class LinkProgres extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function link(){
 
         return $this->belong(Link::class, 'link_id');
